@@ -1,4 +1,11 @@
-// Dica: Mova o reset de html, body para o arquivo src/styles.scss global
+/* Reset global para remover a margem padrão do navegador e a borda branca */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
 
 .theme-dark {
   --bg: #0B0F1A;
