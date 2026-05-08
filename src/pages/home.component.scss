@@ -1,13 +1,5 @@
+// Dica: Mova o reset de html, body para o arquivo src/styles.scss global
 
-// Reset global para remover a moldura branca do navegador
-html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  width: 100%;
-}
-
-// Tokens adaptados do React
 .theme-dark {
   --bg: #0B0F1A;
   --bg-card: linear-gradient(145deg, rgba(25, 35, 55, 0.8), rgba(15, 22, 38, 0.6));
@@ -35,20 +27,20 @@ html, body {
 
 .theme-light {
   --bg: #F8F6F1;
-  --bg-card: linear-gradient(145deg, #FFFFFF, #F5F0E8);
-  --bg-card-solid: linear-gradient(145deg, #FFFFFF, #FDF8F0);
+  --bg-card: linear-gradient(145deg, #fff, #F5F0E8);
+  --bg-card-solid: linear-gradient(145deg, #fff, #FDF8F0);
   --bg-section: rgba(245, 158, 11, 0.04);
   --nav-bg: rgba(248, 246, 241, 0.92);
   --text: #1A1208;
-  --text-muted: #57534E; // Escurecido
-  --text-sub: #6B6661;   // Escurecido
-  --text-mid: #44403C;   // Escurecido
+  --text-muted: #57534E;
+  --text-sub: #6B6661;
+  --text-mid: #44403C;
   --border: rgba(245, 158, 11, 0.18);
   --border-strong: rgba(245, 158, 11, 0.45);
-  --input-bg: #FFFFFF;
+  --input-bg: #fff;
   --blob1: rgba(245, 158, 11, 0.15);
   --blob2: rgba(30, 58, 95, 0.06);
-  --mockup-bg: linear-gradient(145deg, #FFFFFF, #F5EFDF);
+  --mockup-bg: linear-gradient(145deg, #fff, #F5EFDF);
   --sidebar-bg: #1E3A5F;
   --content-bg: #FDFAF5;
   --bar-bg: rgba(0, 0, 0, 0.03);
@@ -66,7 +58,6 @@ html, body {
   min-height: 100dvh;
 }
 
-// Navbar
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: 68px; display: flex; align-items: center; justify-content: space-between;
@@ -88,7 +79,6 @@ nav {
     display: flex;
     align-items: center;
     gap: 24px;
-    // Removido o padding-right daqui, pois o nav pai já o controla.
   }
 }
 
@@ -98,7 +88,6 @@ nav {
   &:hover { color: #F59E0B; }
 }
 
-// Hero
 .hero {
   padding: 120px 5vw 80px;
   text-align: center; position: relative; overflow: hidden;
@@ -122,7 +111,6 @@ nav {
   &.blob-2 { top: 30%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, var(--blob2), transparent 70%); }
 }
 
-// Botões
 .btn-primary-lg {
   background: linear-gradient(135deg, #F59E0B, #D97706);
   color: #0B0F1A; border: none; padding: 15px 36px; border-radius: 14px;
@@ -139,7 +127,6 @@ nav {
   &:hover { border-color: #F59E0B; color: #F59E0B; }
 }
 
-// Mockup
 .hero-mockup {
   margin-top: 72px; width: 100%; max-width: 880px;
   background: var(--mockup-bg); border: 1px solid var(--border);
@@ -175,7 +162,6 @@ nav {
   .bar.highlight { background: linear-gradient(to top, #D97706, #F59E0B); }
 }
 
-// Features
 .features-section {
   padding: 100px 5vw;
   background: var(--bg-section);
@@ -195,7 +181,6 @@ nav {
   &:hover { transform: translateY(-6px); border-color: var(--border-strong); box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
 }
 
-// Pricing
 .pricing-section {
   padding: 100px 5vw; text-align: center;
   .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 56px; }
@@ -220,7 +205,6 @@ nav {
 
 .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #F59E0B; color: #0B0F1A; padding: 4px 18px; border-radius: 99px; font-size: 11px; font-weight: 800; }
 
-// CTA
 .cta-section {
   padding: 100px 5vw;
   background: radial-gradient(ellipse at 50% 0%, var(--blob1), transparent 70%);
@@ -238,7 +222,6 @@ nav {
   input { flex: 1 1 260px; padding: 15px 20px; border-radius: 12px; border: 1.5px solid var(--border); background: var(--input-bg); color: var(--text); outline: none; }
 }
 
-// Footer
 .footer {
   padding: 40px 5vw; border-top: 1px solid var(--border);
   display: flex; justify-content: space-between; align-items: center;
@@ -246,7 +229,6 @@ nav {
   p { font-size: 13px; color: var(--text-muted); }
 }
 
-// Utilitários e Animações
 .label { color: #F59E0B; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
 .primary { color: #F59E0B; }
 
