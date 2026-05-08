@@ -7,20 +7,20 @@
       <span class="brand">GRAPEvent</span>
     </div>
 
-    <div class="nav-links lp-nav-links">
-      @for (link of navLinks; track link.id) {
-        <button (click)="scrollTo(link.id)" class="link-btn">{{ link.label }}</button>
-      }
+    <div class="nav-links">
+      <div class="lp-nav-links">
+        @for (link of navLinks; track link.id) {
+          <button (click)="scrollTo(link.id)" class="link-btn">{{ link.label }}</button>
+        }
+      </div>
 
-      <!-- Theme toggle -->
+      <!-- Theme toggle movido para fora do container oculto -->
       <button (click)="toggleTheme()" class="theme-toggle">
         <span>{{ isDark() ? '☀️' : '🌙' }}</span>
         <span class="lp-toggle-label">{{ isDark() ? 'Claro' : 'Escuro' }}</span>
       </button>
 
-      <button (click)="scrollTo('cadastro')" class="btn-primary-sm">
-        Quero testar →
-      </button>
+      <button (click)="scrollTo('cadastro')" class="btn-primary-sm">Quero testar →</button>
     </div>
   </nav>
 

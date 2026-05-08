@@ -70,6 +70,9 @@ nav {
   height: 68px; display: flex; align-items: center; justify-content: space-between;
   padding-inline: 5vw;
   transition: all 0.3s ease;
+  /* Corrige problemas de renderização e a linha branca fantasma */
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
 
   &.nav-active {
     background: var(--nav-bg);
@@ -279,4 +282,22 @@ nav {
 
 @media (max-width: 640px) {
   .lp-nav-links { display: none !important; }
+  .lp-toggle-label { display: none; }
+  
+  .hero-mockup {
+    padding: 16px 16px 0;
+    margin-top: 40px;
+
+    .mockup-sidebar {
+      display: none; /* Esconde sidebar no mobile para focar no Dashboard */
+    }
+    
+    .stats-grid {
+      grid-template-columns: 1fr !important; /* Empilha os cards de status */
+    }
+
+    .chart-container {
+      padding: 8px;
+    }
+  }
 }
