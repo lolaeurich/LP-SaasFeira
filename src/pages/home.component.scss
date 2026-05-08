@@ -30,6 +30,8 @@ html, body {
   --stat-green: #4ADE80;
   --stat-blue: #60A5FA;
   --stat-amber: #F59E0B;
+  --toggle-bg: rgba(255, 255, 255, 0.07);
+  --toggle-border: rgba(245, 158, 11, 0.2);
 }
 
 .theme-light {
@@ -55,6 +57,8 @@ html, body {
   --stat-green: #15803D; // Verde com mais contraste para fundo claro
   --stat-blue: #1D4ED8;  // Azul com mais contraste
   --stat-amber: #B45309; // Âmbar com mais contraste
+  --toggle-bg: rgba(0, 0, 0, 0.04);
+  --toggle-border: rgba(245, 158, 11, 0.3);
 }
 
 .lp-wrapper {
@@ -71,8 +75,9 @@ nav {
   padding-inline: 5vw;
   transition: all 0.3s ease;
   /* Corrige problemas de renderização e a linha branca fantasma */
-  -webkit-backface-visibility: hidden;
-  transform: translateZ(0);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  will-change: background, border;
 
   &.nav-active {
     background: var(--nav-bg);
@@ -154,6 +159,13 @@ nav {
   .mockup-body { display: flex; min-height: 300px; border-radius: 12px 12px 0 0; overflow: hidden; }
   .mockup-sidebar { background: var(--sidebar-bg); width: 200px; padding: 20px 16px; }
   .mockup-content { background: var(--content-bg); flex: 1; padding: 20px 24px; }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .stat-card {
@@ -254,7 +266,7 @@ nav {
 
 .theme-toggle {
   display: flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 99px;
-  background: rgba(255,255,255,0.07); border: 1px solid var(--border); cursor: pointer;
+  background: var(--toggle-bg); border: 1px solid var(--toggle-border); cursor: pointer;
   color: var(--text-sub); font-size: 13px;
 }
 
@@ -283,25 +295,31 @@ nav {
 @media (max-width: 640px) {
   .lp-nav-links { display: none !important; }
   .lp-toggle-label { display: none; }
-
+  
   nav {
+    padding-inline: 4vw;
+    
+    .nav-logo .brand { font-size: 16px; }
+    .nav-logo .logo-icon { font-size: 22px; }
+
     .nav-links {
-      gap: 12px; // Reduz o espaço entre o toggle e o botão no mobile
+      gap: 8px;
     }
 
     .theme-toggle {
-      padding: 8px; // Torna o botão de tema um círculo/quadrado menor
-      width: 40px;
-      height: 40px;
+      padding: 0;
+      width: 38px;
+      height: 38px;
       justify-content: center;
+      font-size: 18px;
     }
 
     .btn-primary-sm {
-      padding: 8px 16px;
-      font-size: 13px;
+      padding: 8px 12px;
+      font-size: 12px;
     }
   }
-  
+
   .hero-mockup {
     padding: 16px 16px 0;
     margin-top: 40px;
