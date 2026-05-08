@@ -283,17 +283,46 @@ nav {
 @media (max-width: 640px) {
   .lp-nav-links { display: none !important; }
   .lp-toggle-label { display: none; }
+
+  nav {
+    .nav-links {
+      gap: 12px; // Reduz o espaço entre o toggle e o botão no mobile
+    }
+
+    .theme-toggle {
+      padding: 8px; // Torna o botão de tema um círculo/quadrado menor
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+    }
+
+    .btn-primary-sm {
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+  }
   
   .hero-mockup {
     padding: 16px 16px 0;
     margin-top: 40px;
+    border-radius: 16px;
+
+    .mockup-body {
+      flex-direction: column;
+      min-height: auto; // Remove a altura fixa para não quebrar o layout
+    }
 
     .mockup-sidebar {
       display: none; /* Esconde sidebar no mobile para focar no Dashboard */
     }
     
+    .mockup-content {
+      padding: 16px;
+    }
+
     .stats-grid {
       grid-template-columns: 1fr !important; /* Empilha os cards de status */
+      gap: 8px;
     }
 
     .chart-container {
