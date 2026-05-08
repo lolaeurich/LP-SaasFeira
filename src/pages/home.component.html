@@ -1,0 +1,196 @@
+<div [class.theme-dark]="isDark()" [class.theme-light]="!isDark()" class="lp-wrapper">
+  
+  <!-- Navbar -->
+  <nav [class.nav-active]="scrollY() > 40">
+    <div class="nav-logo">
+      <span style="font-size: 28px"> Ordera </span>
+      <span class="brand">GRAPEvent</span>
+    </div>
+
+    <div class="nav-links lp-nav-links">
+      @for (link of navLinks; track link.id) {
+        <button (click)="scrollTo(link.id)" class="link-btn">{{ link.label }}</button>
+      }
+
+      <!-- Theme toggle -->
+      <button (click)="toggleTheme()" class="theme-toggle">
+        <span>{{ isDark() ? '☀️' : '🌙' }}</span>
+        <span class="lp-toggle-label">{{ isDark() ? 'Claro' : 'Escuro' }}</span>
+      </button>
+
+      <button (click)="scrollTo('cadastro')" class="btn-primary-sm">
+        Quero testar →
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="hero-badge">
+      <span class="dot" style="width: 7px; height: 7px; border-radius: 50%; background: #F59E0B; display: inline-block; animation: lp-pulse 2s infinite"></span>
+      Gestão para pedidos em eventos e restaurantes
+    </div>
+
+    <h1 class="hero-title">
+      Seu evento rodando<br />
+      <span class="text-gradient">sem caos, sem fila.</span>
+    </h1>
+
+    <p class="hero-subtitle" style="max-width: 560px; color: var(--text-sub); line-height: 1.7; margin-bottom: 44px;">
+      ORDERA é o sistema completo para gerenciar pedidos: cozinha, estoque e relatório financeiro — tudo em um só lugar.
+    </p>
+
+    <div class="hero-actions" style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+      <button (click)="scrollTo('cadastro')" class="btn-primary-lg">
+        Quero conhecer →
+      </button>
+      <button (click)="scrollTo('funcionalidades')" class="btn-secondary-lg">
+        Ver funcionalidades
+      </button>
+    </div>
+
+    <!-- Mockup Dashboard -->
+    <div class="hero-mockup">
+      <div class="mockup-header">
+        <div class="dots"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+        <div class="address-bar">crepevent.app/dashboard</div>
+      </div>
+      <div class="mockup-body">
+        <aside class="mockup-sidebar">
+          <div class="sidebar-logo" style="display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 10px; background: rgba(245,158,11,0.12); margin-bottom: 10px; color: #F59E0B; font-weight: 700; font-size: 13px;">
+            <span> GRAPEvent </span> ORDERA
+          </div>
+          <div class="menu-item active" style="display: flex; align-items: center; gap: 8px; padding: 9px 12px; border-radius: 8px; background: rgba(245,158,11,0.15); font-size: 12px; color: #F59E0B; font-weight: 600;">📊 Dashboard</div>
+          <div class="menu-item" style="display: flex; align-items: center; gap: 8px; padding: 9px 12px; font-size: 12px; color: var(--text-muted);">🛒 Pedido</div>
+          <div class="menu-item" style="display: flex; align-items: center; gap: 8px; padding: 9px 12px; font-size: 12px; color: var(--text-muted);">👨‍🍳 Cozinha</div>
+          <div class="menu-item" style="display: flex; align-items: center; gap: 8px; padding: 9px 12px; font-size: 12px; color: var(--text-muted);">📦 Estoque</div>
+        </aside>
+        <main class="mockup-content">
+          <div class="dashboard-title" style="font-size: 15px; font-weight: 700; margin-bottom: 16px;">Dashboard</div>
+          <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px;">
+            <div class="stat-card amber"><span>Faturamento</span><strong>R$ 1.840</strong></div>
+            <div class="stat-card blue"><span>Pedidos</span><strong>47</strong></div>
+            <div class="stat-card green"><span>Lucro</span><strong>R$ 620</strong></div>
+          </div>
+          <div class="chart-container">
+            @for (h of [40,65,50,80,55,90,70]; track $index) {
+              <div class="bar" [style.height.%]="h" [class.highlight]="$index === 5"></div>
+            }
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="funcionalidades" class="features-section">
+    <div #featRef class="container" style="max-width: 1100px; margin: 0 auto;">
+      <div class="section-heading" style="text-align: center; margin-bottom: 60px;">
+        <span class="label">Funcionalidades</span>
+        <h2 style="font-family: 'Space Grotesk'; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; margin-top: 12px;">
+          Tudo que você precisa<br><span class="primary">no mesmo sistema</span>
+        </h2>
+      </div>
+      <div class="features-grid">
+        @for (f of features; track f.title; let i = $index) {
+          <div class="feature-card" 
+               [class.in-view]="featInView()"
+               [style.transition-delay]="i * 80 + 'ms'">
+            <div class="card-emoji" style="font-size: 36px; margin-bottom: 16px;">{{f.emoji}}</div>
+            <h3 style="font-family: 'Space Grotesk'; font-size: 17px; font-weight: 700; margin-bottom: 10px;">{{f.title}}</h3>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65;">{{f.desc}}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="precos" class="pricing-section">
+    <div class="container" style="max-width: 1080px; margin: 0 auto;">
+      <span class="label">Investimento</span>
+      <h2 style="font-family: 'Space Grotesk'; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; margin: 12px 0 16px;">Escolha seu plano</h2>
+      <p class="pricing-sub" style="color: var(--text-muted); margin-bottom: 56px;">Sem taxas por pedido. Sem surpresas. Invista no seu negócio.</p>
+
+      <div class="pricing-grid">
+        <!-- Evento Único -->
+        <div class="price-card">
+          <span class="plan-type">Evento Único</span>
+          <div class="price"><strong>R$79</strong><small>/evento</small></div>
+          <p class="plan-desc" style="color: var(--text-muted); font-size: 13px; margin-bottom: 28px;">Acesso completo por até 3 dias</p>
+          <ul class="plan-list">
+            <li><span class="primary">✓</span> Pedidos ilimitados</li>
+            <li><span class="primary">✓</span> Painel da cozinha</li>
+            <li><span class="primary">✓</span> Relatório do evento</li>
+            <li><span class="primary">✓</span> Mobile e PC</li>
+          </ul>
+          <button (click)="scrollTo('cadastro')" class="btn-outline-full">Começar →</button>
+        </div>
+
+        <!-- Mensal -->
+        <div class="price-card popular">
+          <div class="popular-badge">MAIS POPULAR</div>
+          <span class="plan-type primary">Mensal</span>
+          <div class="price primary"><strong>R$49</strong><small>/mês</small></div>
+          <p class="plan-desc" style="color: var(--text-muted); font-size: 13px; margin-bottom: 28px;">Eventos ilimitados no mês</p>
+          <ul class="plan-list">
+            <li><span class="primary">✓</span> Tudo do plano Evento</li>
+            <li><span class="primary">✓</span> Eventos ilimitados</li>
+            <li><span class="primary">✓</span> Controle de estoque</li>
+            <li><span class="primary">✓</span> Suporte via WhatsApp</li>
+          </ul>
+          <button (click)="scrollTo('cadastro')" class="btn-primary-full">Assinar agora →</button>
+        </div>
+
+        <!-- Anual -->
+        <div class="price-card">
+          <div class="save-badge" style="position: absolute; top: 16px; right: 16px; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); border-radius: 99px; padding: 3px 10px; font-size: 11px; font-weight: 700; color: #4ADE80;">ECONOMIZE 25%</div>
+          <span class="plan-type">Anual</span>
+          <div class="price"><strong>R$440</strong><small>/ano</small></div>
+          <p class="plan-desc" style="color: var(--text-muted); font-size: 13px; margin-bottom: 28px;">Equivale a R$36,67/mês</p>
+          <ul class="plan-list">
+            <li><span class="primary">✓</span> Tudo do plano Mensal</li>
+            <li><span class="primary">✓</span> Atualizações incluídas</li>
+            <li><span class="primary">✓</span> Suporte prioritário</li>
+            <li><span class="primary">✓</span> Onboarding VIP</li>
+          </ul>
+          <button (click)="scrollTo('cadastro')" class="btn-outline-full">Melhor custo-benefício →</button>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--text-muted); margin-top: 28px;">Cancele a qualquer momento • Sem fidelidade obrigatória</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cadastro" class="cta-section">
+    <div #ctaRef class="cta-container" [class.in-view]="ctaInView()">
+      <div class="cta-emoji" style="font-size: 52px; margin-bottom: 20px;"> ORDERA </div>
+      <h2 style="font-family: 'Space Grotesk'; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px;">Pronto para vender <span class="primary">mais</span> no próximo evento?</h2>
+      <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 40px;">Deixe seu e-mail e entre na lista de acesso antecipado.</p>
+
+      @if (submitted()) {
+        <div class="success-box">
+          <div class="success-emoji" style="font-size: 40px; margin-bottom: 12px;">🎉</div>
+          <p class="success-msg">Você está na lista!</p>
+          <p class="success-sub">Entraremos em contato em <strong>{{email()}}</strong></p>
+        </div>
+      } @else {
+        <form (submit)="handleSubmit()" class="cta-form">
+          <input type="email" name="email" [(ngModel)]="email" required placeholder="seu@email.com">
+          <button type="submit" class="btn-primary-lg">Entrar na lista →</button>
+        </form>
+      }
+      <p style="font-size: 12px; color: var(--text-muted); margin-top: 16px;">Sem spam. Cancelamento com 1 clique.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo"><span> ORDERA </span> GRAPEvent</div>
+    <p>© 2026 GRAP EVOTECH. Todos os direitos reservados.</p>
+  </footer>
+
+</div>
